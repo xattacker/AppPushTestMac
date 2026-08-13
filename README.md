@@ -23,15 +23,6 @@ AppPushTestMac/
   Assets.xcassets, entitlements
 ```
 
-## Windows → screens
-
-| Original (WPF)        | Ported (SwiftUI)     |
-|------------------------|-----------------------|
-| `MainWindow`            | `MainView` — opens the two tool windows |
-| `AndroidFCMWindow`      | `AndroidFCMView` |
-| `IOS_APNSWindow`        | `IOSAPNSView` (segmented control instead of tabs) |
-| `DeviceTokenEditWindow` | `DeviceTokenEditView` (sheet), shared by both tools via `DeviceTokenListView` |
-
 ## Behavior differences from the original
 
 - **Multiple device tokens are actually all used.** The original `ApnsTBASender`/`PushSender`
