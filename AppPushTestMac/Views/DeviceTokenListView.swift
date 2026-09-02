@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Ports the `tokenListView` behavior shared by `AndroidFCMWindow` and `IOS_APNSWindow`:
+/// Ports the `tokenListView` behavior shared by `AndroidFCMWindow` and `IOS_APNsWindow`:
 /// a list of device tokens with "Add" button, click-to-edit, and right-click-to-delete
 /// (with a confirmation prompt, matching the original's Yes/No message box).
 struct DeviceTokenListView: View {

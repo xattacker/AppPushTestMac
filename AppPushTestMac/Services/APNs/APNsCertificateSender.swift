@@ -24,7 +24,7 @@ enum APNsCertificateError: LocalizedError {
 /// Note: like the P8 sender, and unlike the original (which only ever pushed to
 /// `deviceTokens[0]`), this sends to every token in the list.
 enum APNsCertificateSender {
-    static func send(certInfo: APNSCertificateInfo, message: String, tokens: [String], production: Bool) async throws -> [String] {
+    static func send(certInfo: APNsCertificateInfo, message: String, tokens: [String], production: Bool) async throws -> [String] {
         let (identity, certificates) = try loadIdentity(certInfo: certInfo)
         let delegate = ClientCertificateSessionDelegate(identity: identity, certificates: certificates)
         let session = URLSession(configuration: .ephemeral, delegate: delegate, delegateQueue: nil)
@@ -61,7 +61,7 @@ enum APNsCertificateSender {
         return results
     }
 
-    private static func loadIdentity(certInfo: APNSCertificateInfo) throws -> (SecIdentity, [SecCertificate]) {
+    private static func loadIdentity(certInfo: APNsCertificateInfo) throws -> (SecIdentity, [SecCertificate]) {
         let certURL = URL(fileURLWithPath: certInfo.certFilePath)
         let p12Data = try Data(contentsOf: certURL)
 

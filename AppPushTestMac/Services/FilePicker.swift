@@ -2,7 +2,7 @@ import AppKit
 import UniformTypeIdentifiers
 
 /// Wraps `NSOpenPanel`, replacing `Microsoft.Win32.OpenFileDialog` usage in the original windows.
-enum FilePicker {
+class FilePicker {
     @MainActor
     static func selectFile(extensions: [String]) -> String? {
         let panel = NSOpenPanel()

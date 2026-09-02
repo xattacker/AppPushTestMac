@@ -4,8 +4,8 @@ import SwiftUI
 struct AndroidFCMView: View {
     private let recordFilename = "fcm_record.json"
 
-    @State private var appId = ""
-    @State private var senderId = ""
+    @State private var projectId = ""
+    @State private var accessToken = ""
     @State private var message = ""
     @State private var tokens: [String] = []
 
@@ -14,8 +14,15 @@ struct AndroidFCMView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            LabeledContent("AppId") { TextField("", text: $appId) }
-            LabeledContent("SenderId") { TextField("", text: $senderId) }
+            LabeledContent("Project ID") { TextField("my-firebase-project", text: $projectId) }
+            LabeledContent("Access Token") {
+                VStack(alignment: .leading, spacing: 2) {
+                    TextField("", text: $accessToken)
+                    Text("Run `gcloud auth print-access-token` to obtain")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                }
+            }
             LabeledContent("Message") { TextField("", text: $message) }
 
             DeviceTokenListView(tokens: $tokens)
@@ -32,7 +39,7 @@ struct AndroidFCMView: View {
             }
         }
         .padding()
-        .frame(width: 460, height: 420)
+        .frame(width: 460, height: 440)
         .disabled(isSending)
         .onAppear(perform: load)
         .alert(
@@ -51,20 +58,20 @@ struct AndroidFCMView: View {
 
     private func load() {
         guard let record = RecordStore.load(AndroidFCMRecord.self, filename: recordFilename) else { return }
-        appId = record.appId
-        senderId = record.senderId
+        projectId = record.projectId
+        accessToken = record.accessToken
         message = record.message
         tokens = record.tokens
     }
 
     private func saveRecord() {
-        let record = AndroidFCMRecord(appId: appId, senderId: senderId, message: message, tokens: tokens)
+        let record = AndroidFCMRecord(projectId: projectId, accessToken: accessToken, message: message, tokens: tokens)
         RecordStore.save(record, filename: recordFilename)
     }
 
     private func send() {
-        guard !senderId.isEmpty, !appId.isEmpty, !message.isEmpty, !tokens.isEmpty else {
-            alertMessage = "SenderId, AppId, Message and DeviceToken could not be empty !!"
+        guard !projectId.isEmpty, !accessToken.isEmpty, !message.isEmpty, !tokens.isEmpty else {
+            alertMessage = "Project ID, Access Token, Message and DeviceToken could not be empty !!"
             return
         }
 
@@ -73,7 +80,7 @@ struct AndroidFCMView: View {
 
         Task {
             do {
-                let response = try await FCMSender.send(appId: appId, senderId: senderId, message: message, tokens: tokens)
+                let response = try await FCMSender.send(projectId: projectId, accessToken: accessToken, message: message, tokens: tokens)
                 isSending = false
                 alertMessage = response.isEmpty ? "Sent" : response
             } catch {

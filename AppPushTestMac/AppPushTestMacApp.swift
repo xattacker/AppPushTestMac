@@ -7,14 +7,15 @@ struct AppPushTestMacApp: App {
             MainView()
         }
         .windowResizability(.contentSize)
+        .defaultPosition(.center)
 
         Window("Android FCM", id: "androidFCM") {
             AndroidFCMView()
         }
         .windowResizability(.contentSize)
 
-        Window("iOS APNS", id: "iosAPNS") {
-            IOSAPNSView()
+        Window("iOS APNs", id: "iosAPNs") {
+            IOSAPNsView()
         }
         .windowResizability(.contentSize)
     }

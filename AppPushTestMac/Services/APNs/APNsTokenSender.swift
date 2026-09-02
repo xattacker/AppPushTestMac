@@ -7,7 +7,7 @@ import Foundation
 /// ignoring any additional tokens added in the list. Since the UI lets you add several device
 /// tokens, this sends to every token in the list and reports one result line per token.
 enum APNsTokenSender {
-    static func send(authInfo: APNSAuthInfo, message: String, tokens: [String], production: Bool) async throws -> [String] {
+    static func send(authInfo: APNsAuthInfo, message: String, tokens: [String], production: Bool) async throws -> [String] {
         let keyURL = URL(fileURLWithPath: authInfo.keyFilePath)
         let jwt = try APNsJWTSigner.makeToken(keyFileURL: keyURL, keyID: authInfo.keyID, teamID: authInfo.teamID)
         let host = APNsPushPayload.host(production: production)

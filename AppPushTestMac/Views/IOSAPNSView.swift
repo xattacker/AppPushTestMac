@@ -1,7 +1,7 @@
 import SwiftUI
 
-/// Ports `IOS_APNSWindow`: certificate (.p12) or auth key (.p8) push, sandbox/production toggle.
-struct IOSAPNSView: View {
+/// Ports `IOS_APNsWindow`: certificate (.p12) or auth key (.p8) push, sandbox/production toggle.
+struct IOSAPNsView: View {
     private enum AuthTab: String, CaseIterable, Hashable {
         case certificate = "Certificate (P12)"
         case authKey = "Auth Key (P8)"
@@ -125,7 +125,7 @@ struct IOSAPNSView: View {
     }
 
     private func load() {
-        guard let record = RecordStore.load(IOSAPNSRecord.self, filename: recordFilename) else { return }
+        guard let record = RecordStore.load(IOSAPNsRecord.self, filename: recordFilename) else { return }
         
         certFilePath = record.certificateInfo.certFilePath
         certPwd = record.certificateInfo.certPwd
@@ -139,9 +139,9 @@ struct IOSAPNSView: View {
     }
 
     private func saveRecord() {
-        let record = IOSAPNSRecord(
-            certificateInfo: APNSCertificateInfo(certFilePath: certFilePath, certPwd: certPwd),
-            authInfo: APNSAuthInfo(keyFilePath: keyFilePath, keyID: keyID, teamID: teamID, bundleID: bundleID),
+        let record = IOSAPNsRecord(
+            certificateInfo: APNsCertificateInfo(certFilePath: certFilePath, certPwd: certPwd),
+            authInfo: APNsAuthInfo(keyFilePath: keyFilePath, keyID: keyID, teamID: teamID, bundleID: bundleID),
             serverMode: serverMode == .production,
             message: message,
             tokens: tokens
@@ -172,14 +172,14 @@ struct IOSAPNSView: View {
                 switch selectedTab {
                 case .certificate:
                     results = try await APNsCertificateSender.send(
-                        certInfo: APNSCertificateInfo(certFilePath: certFilePath, certPwd: certPwd),
+                        certInfo: APNsCertificateInfo(certFilePath: certFilePath, certPwd: certPwd),
                         message: message,
                         tokens: tokens,
                         production: serverMode == .production
                     )
                 case .authKey:
                     results = try await APNsTokenSender.send(
-                        authInfo: APNSAuthInfo(keyFilePath: keyFilePath, keyID: keyID, teamID: teamID, bundleID: bundleID),
+                        authInfo: APNsAuthInfo(keyFilePath: keyFilePath, keyID: keyID, teamID: teamID, bundleID: bundleID),
                         message: message,
                         tokens: tokens,
                         production: serverMode == .production

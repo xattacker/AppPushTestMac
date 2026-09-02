@@ -22,7 +22,7 @@
 		A140BB9BE4387D5DD39D9405 /* AndroidFCMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D049E02B908B85F201275418 /* AndroidFCMView.swift */; };
 		B217550D0F05519A55FFD345 /* DeviceTokenEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D74E601A0BA36F54DD212A /* DeviceTokenEditView.swift */; };
 		C75FA05F1C0EB5F1FDE2FC51 /* IOSAPNSRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E28BE633E83C2F9FE03B746 /* IOSAPNSRecord.swift */; };
-		EF9AE8F7BE6C83CF91E096EA /* IOSAPNSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E1A0AA5BC1C501AEFED033 /* IOSAPNSView.swift */; };
+		EF9AE8F7BE6C83CF91E096EA /* IOSAPNsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E1A0AA5BC1C501AEFED033 /* IOSAPNsView.swift */; };
 		F154FD454867E6992DCFB533 /* AppPushTestMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD49C68F5FBE3308B00D5174 /* AppPushTestMacApp.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,7 +31,7 @@
 		199400ADA1428D1193284183 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		23E0AD259DA1ACAD7973CF4B /* APNsCertificateSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNsCertificateSender.swift; sourceTree = "<group>"; };
 		24E8B0D1023EBAEA7202948C /* AppPushTestMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppPushTestMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		26E1A0AA5BC1C501AEFED033 /* IOSAPNSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSAPNSView.swift; sourceTree = "<group>"; };
+		26E1A0AA5BC1C501AEFED033 /* IOSAPNsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSAPNsView.swift; sourceTree = "<group>"; };
 		2E01BDA32BFBF36C5463FAF7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E0113B51021A2C821ECD651 /* DeviceTokenListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenListView.swift; sourceTree = "<group>"; };
 		41EBDEACBDB3FEF9B3733681 /* ClientCertificateSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCertificateSessionDelegate.swift; sourceTree = "<group>"; };
@@ -82,12 +82,8 @@
 		BD3C38FFCC170626CDC2F854 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				23E0AD259DA1ACAD7973CF4B /* APNsCertificateSender.swift */,
-				518F79BCF4EBD6220181432A /* APNsJWTSigner.swift */,
-				5BE14A93599A4EDD885FA360 /* APNsPushPayload.swift */,
-				B3F46D6786F8ABC154A08561 /* APNsTokenSender.swift */,
-				41EBDEACBDB3FEF9B3733681 /* ClientCertificateSessionDelegate.swift */,
-				B530F43D40758B8C57B82485 /* FCMSender.swift */,
+				C514DE5C3047E80B008B5540 /* FCM */,
+				C514DE5D3047E80D008B5540 /* APNs */,
 				B4978C0E093F363B0F7C52DB /* FilePicker.swift */,
 				AF5BE4DBFABF36A7333FF1F2 /* RecordStore.swift */,
 			);
@@ -102,13 +98,33 @@
 			);
 			sourceTree = "<group>";
 		};
+		C514DE5C3047E80B008B5540 /* FCM */ = {
+			isa = PBXGroup;
+			children = (
+				B530F43D40758B8C57B82485 /* FCMSender.swift */,
+			);
+			path = FCM;
+			sourceTree = "<group>";
+		};
+		C514DE5D3047E80D008B5540 /* APNs */ = {
+			isa = PBXGroup;
+			children = (
+				23E0AD259DA1ACAD7973CF4B /* APNsCertificateSender.swift */,
+				518F79BCF4EBD6220181432A /* APNsJWTSigner.swift */,
+				5BE14A93599A4EDD885FA360 /* APNsPushPayload.swift */,
+				B3F46D6786F8ABC154A08561 /* APNsTokenSender.swift */,
+				41EBDEACBDB3FEF9B3733681 /* ClientCertificateSessionDelegate.swift */,
+			);
+			path = APNs;
+			sourceTree = "<group>";
+		};
 		F816D5A5929198BE699875FE /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				D049E02B908B85F201275418 /* AndroidFCMView.swift */,
 				02D74E601A0BA36F54DD212A /* DeviceTokenEditView.swift */,
 				3E0113B51021A2C821ECD651 /* DeviceTokenListView.swift */,
-				26E1A0AA5BC1C501AEFED033 /* IOSAPNSView.swift */,
+				26E1A0AA5BC1C501AEFED033 /* IOSAPNsView.swift */,
 				199400ADA1428D1193284183 /* MainView.swift */,
 			);
 			path = Views;
@@ -197,7 +213,7 @@
 				7ADC46363A0D472F4F038EF3 /* FCMSender.swift in Sources */,
 				2A5CE3D6D441C80A8CD46921 /* FilePicker.swift in Sources */,
 				C75FA05F1C0EB5F1FDE2FC51 /* IOSAPNSRecord.swift in Sources */,
-				EF9AE8F7BE6C83CF91E096EA /* IOSAPNSView.swift in Sources */,
+				EF9AE8F7BE6C83CF91E096EA /* IOSAPNsView.swift in Sources */,
 				0BDE6337FAEA22AC6D950733 /* MainView.swift in Sources */,
 				2C9F636618DCE9F053D5D674 /* RecordStore.swift in Sources */,
 			);
